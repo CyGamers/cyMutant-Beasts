@@ -1,0 +1,172 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "cymutant:mutant_skeleton_part",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "head":{"minecraft:variant": {"value": 5}},
+      "limb":{"minecraft:variant": {"value": 1}},
+      "pelvis":{"minecraft:variant": {"value": 2}},
+      "rib":{"minecraft:variant": {"value": 3}},
+      "shoulder_pad":{"minecraft:variant": {"value": 4}}
+    },
+    "components": {
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "none",
+            "deals_damage": false
+          },
+          {
+            "cause": "override",
+            "deals_damage": false
+          },
+          {
+            "cause": "contact",
+            "deals_damage": false
+          },
+          {
+            "cause": "entity_attack",
+            "deals_damage": false
+          },
+          {
+            "cause": "projectile",
+            "deals_damage": false
+          },
+          {
+            "cause": "suffocation",
+            "deals_damage": false
+          },
+          {
+            "cause": "fall",
+            "deals_damage": false
+          },
+          {
+            "cause": "drowning",
+            "deals_damage": false
+          },
+          {
+            "cause": "block_explosion",
+            "deals_damage": false
+          },
+          {
+            "cause": "entity_explosion",
+            "deals_damage": false
+          },
+          {
+            "cause": "magic",
+            "deals_damage": false
+          },
+          {
+            "cause": "wither",
+            "deals_damage": false
+          },
+          {
+            "cause": "starve",
+            "deals_damage": false
+          },
+          {
+            "cause": "anvil",
+            "deals_damage": false
+          },
+          {
+            "cause": "thorns",
+            "deals_damage": false
+          },
+          {
+            "cause": "falling_block",
+            "deals_damage": false
+          },
+          {
+            "cause": "piston",
+            "deals_damage": false
+          },
+          {
+            "cause": "fly_into_wall",
+            "deals_damage": false
+          },
+          {
+            "cause": "magma",
+            "deals_damage": false
+          },
+          {
+            "cause": "fireworks",
+            "deals_damage": false
+          },
+          {
+            "cause": "lightning",
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:type_family": {
+        "family": [
+          "skeleton_part"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.2,
+        "height": 0.2
+      },
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:attack": {
+        "damage": 7
+      }
+    },
+    "events": {
+//      "minecraft:entity_spawned": {
+//        "randomize": [
+//          {
+//            "weight": 1,
+//            "add": {"component_groups": ["head"]}
+//          },
+//          {
+//            "weight": 1,
+//            "add": {"component_groups": ["limb"]}
+//          },
+//          {
+//            "weight": 1,
+//            "add": {"component_groups": ["pelvis"]}
+//          },
+//          {
+//            "weight": 1,
+//            "add": {"component_groups": ["rib"]}
+//          },
+//          {
+//            "weight": 1,
+//            "add": {"component_groups": ["shoulder_pad"]}
+//          }
+//        ]
+//      },
+      "CYMutant:be_head": {
+        "remove": {"component_groups": ["limb","pelvis","rib","shoulder_pad"]},
+        "add": {"component_groups": ["head"]}
+      },
+      "CYMutant:be_limb": {
+        "remove": {"component_groups": ["head","pelvis","rib","shoulder_pad"]},
+        "add": {"component_groups": ["limb"]}
+      },
+      "CYMutant:be_pelvis": {
+        "remove": {"component_groups": ["head","limb","rib","shoulder_pad"]},
+        "add": {"component_groups": ["pelvis"]}
+      },
+      "CYMutant:be_rib": {
+        "remove": {"component_groups": ["head","limb","pelvis","shoulder_pad"]},
+        "add": {"component_groups": ["rib"]}
+      },
+      "CYMutant:be_shoulder_pad": {
+        "remove": {"component_groups": ["head","limb","pelvis","rib"]},
+        "add": {"component_groups": ["shoulder_pad"]}
+      }
+    }
+  }
+}

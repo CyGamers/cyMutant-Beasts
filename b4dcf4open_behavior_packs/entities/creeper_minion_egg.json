@@ -1,0 +1,183 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "cymutant:creeper_minion_egg",
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "minecraft:charged_creeper": {
+        "minecraft:is_charged": {
+        }
+      },
+      "minecraft:llama_tamed": {
+        "minecraft:is_tamed": {
+        },
+        "minecraft:behavior.follow_owner": {
+          "priority": 0,
+          "speed_multiplier": 1.0,
+          "start_distance": 0.01,
+          "stop_distance": 1.5
+        },
+        "minecraft:movement": {
+          "value": 0.1
+        },
+        "minecraft:type_family": {
+          "family": [
+            "creeper",
+            "monster",
+            "mob",
+            "parrot_tame"
+          ]
+        },
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "family_types": [
+            "parrot_tame"
+          ],
+          "pull_in_entities": true,
+          "seats": [
+            {
+              "position": [
+                0.4,
+                -0.2,
+                -0.1
+              ],
+              "min_rider_count": 0,
+              "max_rider_count": 0,
+              "lock_rider_rotation": 0
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:tameable": {
+        "probability": 1,
+        "tame_items": [],
+        "tame_event": {
+          "event": "minecraft:on_tame",
+          "target": "self"
+        }
+      },
+      "minecraft:ageable": {
+        "duration": 60,
+        "grow_up": {
+          "event": "minecraft:ageable_grow_up",
+          "target": "self"
+        }
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "lightning"
+              },
+              "event": "minecraft:become_charged"
+            },
+            "deals_damage": false
+          },
+          {
+            "cause": "fall",
+            "deals_damage": false
+          },
+          {
+            "cause": "block_explosion",
+            "deals_damage": false
+          },
+          {
+            "cause": "fire",
+            "deals_damage": false
+          }
+        ]
+      },
+      //      "minecraft:nameable": {
+      //      },
+      "minecraft:type_family": {
+        "family": [
+          "creeper",
+          "monster",
+          "mob"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.35,
+        "height": 0.35
+      },
+      "minecraft:health": {
+        "value": 8,
+        "max": 8
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0,
+        "breathes_air": true,
+        "breathes_water": true
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/creeper_minion_egg.json"
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  }
+                ]
+              },
+              "event": "cymutant:player_creeper_minion_egg"
+            },
+            "use_item": false
+          }
+        ]
+      }
+    },
+    "events": {
+      "minecraft:on_tame": {
+        "add": {
+          "component_groups": [
+            "minecraft:llama_tamed"
+          ]
+        }
+      },
+      "minecraft:ageable_grow_up": {},
+      "minecraft:become_charged": {
+        "add": {
+          "component_groups": [
+            "minecraft:charged_creeper"
+          ]
+        }
+      },
+      "cymutant:player_creeper_minion_egg": {}
+    }
+  }
+}
